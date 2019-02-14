@@ -18,7 +18,7 @@ class MusicLoaderApplication {
 
 		val incrementOffset = 100L
 
-		var offest = incrementOffset
+		var offest = 0L
 		var musicList = service.fetchMusicInfoFromPage(offest)
 
 		println("Start load records.")
