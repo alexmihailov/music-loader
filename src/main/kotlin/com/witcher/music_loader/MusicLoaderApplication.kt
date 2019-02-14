@@ -20,20 +20,32 @@ class MusicLoaderApplication {
 
 		var offest = incrementOffset
 		var musicList = service.fetchMusicInfoFromPage(offest)
+
+		println("Start load records.")
 		do {
+			println()
+			println("Loading batch of ${musicList.size} records.")
+			println()
+
+			var counterForDisplay = 1L
 			for(music in musicList) {
-				print("Download: ${music.title} ... ")
+				print("[$counterForDisplay] Download: ${music.title} ... ")
 				try {
 					loader.loadMusic(music)
 					print("Done.")
 				} catch (t: Throwable) {
 					print("Failure.")
 				}
+				counterForDisplay += 1L
+
 				println()
 			}
 			offest += incrementOffset
 			musicList = service.fetchMusicInfoFromPage(offest)
 		} while(musicList.isNotEmpty())
+
+		println()
+		println("End load records.")
 	}
 }
 
